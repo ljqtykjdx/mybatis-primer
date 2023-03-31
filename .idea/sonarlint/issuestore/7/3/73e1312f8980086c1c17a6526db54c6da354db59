@@ -1,0 +1,11 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨³ÀÜÿÿÿÿÿ
+c
+java:S1075""ARefactor your code to get this URI from a customizable parameter.(ú“•ïÿÿÿÿÿ8ƒµÒ²ê0
+^
+java:S1075$"ARefactor your code to get this URI from a customizable parameter.(ñ•½8„µÒ²ê0
+X	java:S1253"<This block of commented-out lines of code should be removed.(î‘Œ8§ñ µê0
+Q
+java:S2864M"4Iterate over the "entrySet" instead of the "keySet".(á«ûÀ8›µÒ²ê0
+L
+java:S20931"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8©µÒ²ê0

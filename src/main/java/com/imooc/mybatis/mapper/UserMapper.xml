@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.mybatis.mapper.UserMapper">
+    <cache type="org.mybatis.caches.redis.RedisCache" />
+    <resultMap id="userMap" type="com.imooc.mybatis.model.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="age" column="age"/>
+        <result property="score" column="score"/>
+    </resultMap>
+<!--    <select id="selectUserByAgeAndScore" parameterType="com.imooc.mybatis.model.User"-->
+<!--            resultMap="userMap">-->
+<!--        SELECT * FROM imooc_user WHERE age = #{age} AND score = #{score}-->
+<!--    </select>-->
+
+    <select id="selectUserAgeById" resultType="java.lang.Integer">
+        SELECT age FROM imooc_user WHERE id = #{id}
+    </select>
+
+<!--    <select id="selectUserByAgeAndScore" parameterType="com.imooc.mybatis.model.User"-->
+<!--            resultType="com.imooc.mybatis.model.User">-->
+<!--        SELECT * FROM imooc_user WHERE age = #{age} AND score = #{score}-->
+<!--    </select>-->
+    <sql id="selectUser">
+        SELECT * FROM imooc_user
+    </sql>
+
+    <select id="selectUserByAgeAndScore" parameterType="com.imooc.mybatis.model.User"
+            resultMap="userMap">
+        <include refid="selectUser"/>
+        WHERE age = #{age} AND score = #{score}
+    </select>
+
+
+
+    <!--  复用的 sql 代码段   -->
+    <sql id="selectUserShortcutMap">
+        SELECT username,age FROM imooc_user
+    </sql>
+    <!--  结果映射集   -->
+    <resultMap id="userShortcutMap" type="com.imooc.mybatis.model.UserShortCut">
+        <result property="username" column="username"/>
+        <result property="age" column="age"/>
+    </resultMap>
+    <!--  查询语句   -->
+    <select id="selectUserShortcutById" resultMap="userShortcutMap">
+        <include refid="selectUserShortcutMap"/>
+        WHERE id = #{id}
+    </select>
+
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.imooc.mybatis.model.User">
+        INSERT INTO imooc_user(username,age,score) VALUES (#{username},#{age},#{score})
+    </insert>
+
+    <update id="updateUserAgeById">
+        UPDATE imooc_user SET age = #{age} WHERE id = #{id}
+    </update>
+    <select id="selectUserByNameCondition" parameterType="com.imooc.mybatis.model.User"
+            resultType="com.imooc.mybatis.model.User">
+        SELECT * FROM imooc_user
+        WHERE username = #{username}
+        <if test="age != null">
+            AND age = #{age}
+        </if>
+        <if test="score != null">
+            AND score = #{score}
+        </if>
+    </select>
+
+<!--    <select id="selectUserByLikeName" resultType="com.imooc.mybatis.model.User">-->
+<!--        SELECT * FROM imooc_user-->
+<!--        WHERE username LIKE-->
+<!--        <if test="_databaseId == 'mysql'">-->
+<!--            CONCAT('%',#{username},'%')-->
+<!--        </if>-->
+<!--        <if test="_databaseId == 'postgre'">-->
+<!--            '%' || #{username} || '%'-->
+<!--        </if>-->
+<!--    </select>-->
+
+    <select id="selectUserByIdOrName" resultType="com.imooc.mybatis.model.User">
+        SELECT * FROM imooc_user
+        WHERE
+        <choose>
+            <when test="id != null">
+                id = #{id}
+            </when>
+            <when test="username != null">
+                username = #{username}
+            </when>
+            <otherwise>
+                1 = 0
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectUsernameLowercase" resultType="com.imooc.mybatis.model.User">
+        <bind name="lowercaseName" value="username.toLowercase"/>
+        SELECT * FROM imooc_user
+        WHERE username = #{lowercaseName}
+    </select>
+
+
+    <insert id="insertUserDynamic" parameterType="com.imooc.mybatis.model.User">
+        INSERT INTO imooc_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="age != null">
+                #{age},
+            </if>
+            <if test="score != null">
+                #{score},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectUserInNames" resultType="com.imooc.mybatis.model.User">
+        SELECT * FROM imooc_user
+        WHERE username IN
+        <foreach collection="names" open="(" close=")" separator="," item="item" index="index">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="insertUsers">
+        INSERT INTO imooc_user(username,age,score)
+        VALUES
+        <foreach collection="users" item="user" separator=",">
+            (#{user.username}, #{user.age}, #{user.score})
+        </foreach>
+    </insert>
+
+    <select id="selectUserById" resultType="com.imooc.mybatis.model.User">
+        SELECT * FROM imooc_user WHERE id = #{id}
+    </select>
+
+</mapper>
+
+

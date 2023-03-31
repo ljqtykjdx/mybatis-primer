@@ -1,0 +1,6 @@
+
+e
+java:S2095#"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(‘Ü Ð8¢ý´³ë0
+q
+java:S2095%"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Æëç«þÿÿÿÿ8²ý´³ë0
+U	java:S106,"9Replace this use of System.out or System.err by a logger.(Ìàí¼8Ñý´³ë0

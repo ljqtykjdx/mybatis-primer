@@ -1,0 +1,22 @@
+
+j
+java:S2095Z"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(‡íøÿÿÿÿ8°ÍÁµë0
+j
+java:S2095^"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(·ßìşÿÿÿÿÿ8ºÍÁµë0
+
+java:S1130"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(‚á€Îşÿÿÿÿ8å÷ñµë0
+X	java:S125"<This block of commented-out lines of code should be removed.(ï€µÄ8ãƒ¤²ê0
+X	java:S125&"<This block of commented-out lines of code should be removed.(Öìø¬8äƒ¤²ê0
+X	java:S1253"<This block of commented-out lines of code should be removed.(ƒÿÁ„8åƒ¤²ê0
+X	java:S125:"<This block of commented-out lines of code should be removed.(œ¶½8æƒ¤²ê0
+X	java:S125>"<This block of commented-out lines of code should be removed.(œ¶½8çƒ¤²ê0
+X	java:S125D"<This block of commented-out lines of code should be removed.(œ¶½8èƒ¤²ê0
+X	java:S125K"<This block of commented-out lines of code should be removed.(œ¶½8ÎŸÁµë0
+Z	java:S106]"9Replace this use of System.out or System.err by a logger.(õš‡àúÿÿÿÿ8ÜÍÁµë0
+Z	java:S106a"9Replace this use of System.out or System.err by a logger.(¿¿±úÿÿÿÿ8ÜÍÁµë0
+^
+java:S1128"ARemove this unused import 'com.imooc.mybatis.model.UserShortCut'.(šØÍó8Èùñµë0
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Øùñµë0
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ùùñµë0
